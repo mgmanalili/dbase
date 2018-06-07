@@ -18,6 +18,7 @@ conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 
 curs = conn.cursor()
 curs.execute("LISTEN my_table;")
+curs.execute("NOTIFY my_table;")
 #DBase to UNLISTEN
 #curs.execute("UNLISTEN postgres;")
 
@@ -153,6 +154,10 @@ CREATE FUNCTION audit_trigger()
     END IF;
   END;
   $$;
+
+#
+pg_get_notify
+								 
 ##---------------------------------FOREIGN DATA WRAPPER SETUP------------------------------------------------##
 CREATE EXTENSION postgres_fdw
 CREATE EXTENSION ogr_fdw
